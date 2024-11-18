@@ -1,4 +1,4 @@
-# Complete Applications
+# Assignment 2: Classify
 
 
 ## Requirements
