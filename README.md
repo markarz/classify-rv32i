@@ -562,6 +562,7 @@ error_exit:
 ```
 #### explain
  The function multiplication_start performs multiplication by treating one of the operands (either the multiplicand or multiplier) as the loop index. The other number is repeatedly added to a result register until the loop condition is met, at which point the accumulation stops.
+ 
  ex:
  2*3 = 2+2+2
  3 is used as the index, and 2 is repeatedly added to the result register.
@@ -696,6 +697,7 @@ error_exit:
 ```
 #### explain
 The function multiplication_start performs multiplication by treating one of the operands (either the multiplicand or multiplier) as the loop index. The other number is repeatedly added to a result register until the loop condition is met, at which point the accumulation stops.
+
  ex:
  5*1 = 5
  1 is used as the index, and 5 is repeatedly added to the result register.
