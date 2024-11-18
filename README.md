@@ -1,5 +1,8 @@
 # Assignment 2: Classify
 ## Introduction
+An Artificial Neural Network (ANN) is a computational model inspired by the structure and functioning of biological neural networks.
+It consists of layers of interconnected nodes (neurons) designed to process and learn from data.
+The ANN implementation uses the following functions: Matrix Multiplication, ReLU, etc.
 
 
 ## Requirements
