@@ -44,11 +44,11 @@ loop_start:#t0:ans,t1:index,t2:memory_index,t3:first_array_offset,t4:second_arra
     slli t2, t4, 2
     add t2,a1,t2       
     lw t6,0(t2)
-    mul t2,t5,t6
-    add t0,t0,t2  
     addi t1,t1,1
     add t3,t3,a3
     add t4,t4,a4
+    mul t2,t5,t6
+    add t0,t0,t2  
     j loop_start       
 
 loop_end:
