@@ -249,19 +249,19 @@ inner_loop_start:
 inner_loop_end:
     li  t1 , 4
     mul t2,a2,t1
-    add s3,s3,t2
-    addi s0,s0,1
+    add s3,s3,t2            #Calculate the memory address of the first value in the next row of matrix A.
+    addi s0,s0,1            #row index++
     j outer_loop_start
 
 outer_loop_end:
-    lw ra, 0(sp)
-    lw s0, 4(sp)
-    lw s1, 8(sp)
-    lw s2, 12(sp)
-    lw s3, 16(sp)
-    lw s4, 20(sp)
-    lw s5, 24(sp)
-    addi sp, sp, 28
+    lw ra, 0(sp)            # Restore return address (ra) from the stack (ra is at offset 0 from sp)
+    lw s0, 4(sp)            # Restore saved register s0 from the stack (s0 is at offset 4 from sp)
+    lw s1, 8(sp)            # Restore saved register s1 from the stack (s1 is at offset 8 from sp)
+    lw s2, 12(sp)           # Restore saved register s2 from the stack (s2 is at offset 12 from sp)
+    lw s3, 16(sp)           # Restore saved register s3 from the stack (s3 is at offset 16 from sp)
+    lw s4, 20(sp)           # Restore saved register s4 from the stack (s4 is at offset 20 from sp)
+    lw s5, 24(sp)           # Restore saved register s5 from the stack (s5 is at offset 24 from sp)
+    addi sp, sp, 28         # Adjust stack pointer (sp) by adding 28 to it, effectively cleaning up the stack space used (releases 7 words: 28 bytes)
     ret
     
 
@@ -271,9 +271,11 @@ error:
 
 ```
 #### explain
+This function implements matrix multiplication.
 
+At inner_loop_end, move the address of matrix A to the first value of the next row and increment the row index by 1.
 
-
+At outer_loop_end, the code restores the values of several registers (like ra, s0, s1, etc.) from the stack, which were saved earlier to preserve the state. After restoring these registers, the stack pointer (sp) is adjusted by 28 bytes to free up the space used for saving those registers. This ensures that the program returns to its previous state and that no extra space is used on the stack.
 
 ## Result
 
