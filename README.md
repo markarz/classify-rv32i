@@ -701,7 +701,7 @@ The function multiplication_start performs multiplication by treating one of the
 
 
 
-### abs.s:
+### classify.s:
 #### code
 ```
 .globl classify
@@ -1124,7 +1124,7 @@ The functions multiplication_start_register0 and multiplication_start_register1 
 
 
 ## Result
-`
+```
 jorge@jorge-virtual-machine:~/classify-rv32i$ bash test.sh all
 test_abs_minus_one (__main__.TestAbs) ... ok
 test_abs_one (__main__.TestAbs) ... ok
@@ -1176,5 +1176,6 @@ test_write_fail_fwrite (__main__.TestWriteMatrix) ... ok
 ----------------------------------------------------------------------
 Ran 46 tests in 39.813s
 
-OK`
+OK
+```
 
