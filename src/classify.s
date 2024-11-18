@@ -166,7 +166,9 @@ classify:
     
     lw t0, 0(s3)
     lw t1, 0(s8)
-    # mul a0, t0, t1 # FIXME: Replace 'mul' with your own implementation
+    li a0 ,0
+    li t5,0
+    jal multiplication_start_register0
     slli a0, a0, 2
     jal malloc 
     beq a0, x0, error_malloc
@@ -203,8 +205,10 @@ classify:
     mv a0, s9 # move h to the first argument
     lw t0, 0(s3)
     lw t1, 0(s8)
-    # mul a1, t0, t1 # length of h array and set it as second argument
-    # FIXME: Replace 'mul' with your own implementation
+    li a1 ,0
+    li t5,0
+    jal multiplication_start_register1
+ 
     
     jal relu
     
@@ -226,7 +230,9 @@ classify:
     
     lw t0, 0(s3)
     lw t1, 0(s6)
-    # mul a0, t0, t1 # FIXME: Replace 'mul' with your own implementation
+    li a0 ,0
+    li t5,0
+    jal multiplication_start_register0
     slli a0, a0, 2
     jal malloc 
     beq a0, x0, error_malloc
@@ -286,9 +292,9 @@ classify:
     mv a0, s10 # load o array into first arg
     lw t0, 0(s3)
     lw t1, 0(s6)
-    mul a1, t0, t1 # load length of array into second arg
-    # FIXME: Replace 'mul' with your own implementation
-    
+    li a1 ,0
+    li t5,0
+    jal multiplication_start_register1
     jal argmax
     
     mv t0, a0 # move return value of argmax into t0
@@ -384,3 +390,25 @@ error_args:
 error_malloc:
     li a0, 26
     j exit
+multiplication_start_register0:
+    li a0 ,0
+    li t5,0
+loop_multiplication:
+    beq t5,t1 ,multiplication_end
+    add a0,a0,t0
+    addi t5,t5,1
+    j loop_multiplication
+    
+multiplication_start_register1:
+    li a1 ,0
+    li t5,0
+loop1_multiplication:
+    beq t5,t1 ,multiplication_end
+    add a1,a1,t0
+    addi t5,t5,1
+    j loop1_multiplication
+    
+multiplication_end:
+    ret 
+
+    

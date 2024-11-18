@@ -60,7 +60,15 @@ write_matrix:
 
     li t0, 2
     bne a0, t0, fwrite_error
-
+    li,t5,0
+    li s4,0
+    multiplication_start:
+    beq t5,s3 ,multiplication_end
+    add s4,s4,s2
+    addi t5,t5,1
+    j multiplication_start
+                            
+    multiplication_end:
     # mul s4, s2, s3   # s4 = total elements
     # FIXME: Replace 'mul' with your own implementation
 

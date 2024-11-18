@@ -73,10 +73,15 @@ read_matrix:
 
     sw t1, 0(s3)     # saves num rows
     sw t2, 0(s4)     # saves num cols
-
-    # mul s1, t1, t2   # s1 is number of elements
-    # FIXME: Replace 'mul' with your own implementation
-
+    li,t5,0
+    li s1,0
+    multiplication_start:
+    beq t5,t2 ,multiplication_end
+    add s1,s1 t1
+    addi t5,t5,1
+    j multiplication_start
+                            # mul s1, t1, t2   # s1 is number of elements
+    multiplication_end:
     slli t3, s1, 2
     sw t3, 24(sp)    # size in bytes
 
@@ -117,6 +122,8 @@ read_matrix:
     addi sp, sp, 40
 
     jr ra
+
+
 
 malloc_error:
     li a0, 26

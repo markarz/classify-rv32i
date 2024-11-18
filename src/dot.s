@@ -32,11 +32,24 @@ dot:
     blt a4, t0, error_terminate  
 
     li t0, 0            
-    li t1, 0         
+    li t1, 0  
+    li t3, 0 
+    li t4, 0 
 
-loop_start:
+loop_start:#t0:ans,t1:index,t2:memory_index,t3:first_array_offset,t4:second_array_offset,t5:first_num:t6:second_num
     bge t1, a2, loop_end
-    # TODO: Add your own implementation
+    slli t2, t3, 2      
+    add t2, a0, t2
+    lw t5, 0(t2)
+    slli t2, t4, 2
+    add t2,a1,t2       
+    lw t6,0(t2)
+    mul t2,t5,t6
+    add t0,t0,t2  
+    addi t1,t1,1
+    add t3,t3,a3
+    add t4,t4,a4
+    j loop_start       
 
 loop_end:
     mv a0, t0

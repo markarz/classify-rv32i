@@ -24,13 +24,27 @@
 argmax:
     li t6, 1
     blt a1, t6, handle_error
-
     lw t0, 0(a0)
-
-    li t1, 0
+    li t1, 0#max index
     li t2, 1
 loop_start:
-    # TODO: Add your own implementation
+    beq t2, a1, loop_end  # If t1 == a1, exit the loop (i >= size)
+    slli t3, t2, 2        # t2 = t1 * 4 (calculate byte offset)
+    add t4, a0, t3        
+    lw t5, 0(t4)          # t5 = nums[i]
+    blt t5 t0 skip 
+    add t0,t5,zero
+    add t1,t2,zero
+    
+skip:
+    addi t2, t2, 1        # Increment index (t2++)
+    j loop_start  
+
+
+loop_end:
+    addi a0,t1,0
+    ret                   # Return to caller
+    
 
 handle_error:
     li a0, 36
