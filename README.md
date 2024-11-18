@@ -226,11 +226,11 @@ loop_start:#a3:array1's stride = stride1 , a4:array2's stride = stride2
     slli t2, t4, 2          # t2 = t4 * 4 (calculate byte offset for second array)
     add t2,a1,t2            # t2 = base address + offset (address of array2[i])    
     lw t6,0(t2)             # t6 = array2[i] - Load the value at the address of array2[i] into t6
-    mul t2,t5,t6            # t2 = t5 * t6 (multiply array1[i] by array2[i])
-    add t0,t0,t2            # t0 = t0 + t2 (accumulate the result into t0)
     addi t1,t1,1            # Increment index (t1++) 
     add t3,t3,a3            # t3 = t3 + a3 (adjust index for array1)
     add t4,t4,a4            # t4 = t4 + a4 (adjust index for array2)
+    mul t2,t5,t6            # t2 = t5 * t6 (multiply array1[i] by array2[i])
+    add t0,t0,t2            # t0 = t0 + t2 (accumulate the result into t0)
     j loop_start       
 
 loop_end:
